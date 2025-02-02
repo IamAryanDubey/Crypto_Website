@@ -1,0 +1,29 @@
+#detailsHeading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 30px;
+}
+#cryptoDetails{
+    width: 100%;
+    text-align: center;
+}
+
+@keyframes rotateInfinite{
+    from{ transform: rotateZ(0deg)}
+    to{ transform: rotateZ(360deg)}
+}
+#detailImage{
+    width: 10%;
+    height: 10%;
+    animation: rotateInfinite 2s linear infinite;
+}
+
+#myButton{
+    width: 20%;
+    height: 40px;
+    color: aliceblue;
+    border-radius: 5px;
+    background-color: blue;
+}
