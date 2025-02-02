@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <style>
+        body{
+            font-family: 'Red Hat Display', sans-serif;
+        }
+        p{
+            margin: 0;
+        }
+        .flexCol{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stocksTable{
+            width: 90%;
+            margin: 20px auto;
+        }
+        .tablerow{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            overflow: hidden;
+            padding: 20px 50px;
+        }
+        .tablerow img{
+            width: 10vw;
+            height: fit-content;
+
+        }
+        .priceContainer{
+            display: flex;
+            gap: 20px;
+        }
+        .priceChange{
+            background: #24b400;
+            color: #fff;
+            padding: 2px 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            height: fit-content;
+        }
+        .stockPrice{
+            font-size: 22px;
+        }
+        .stockName{
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <div class="stocksTable">
+            <div class="tablerow">
+                <div class="flexCol">
+                    <img src="/image.webp" alt="" class="">
+                </div>
+                <div class="flexCol">
+                    <p class="stockName">Bitcoin</p>
+                </div>
+                <div class="flexCol">
+                    <div class="priceContainer">
+                        <p class="stockPrice">$10,000</p>
+                        <div class="flexCol">
+                            <p class="priceChange">+1.02%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tablerow">
+                <div class="flexCol">
+                    <img src="/image.webp" alt="" class="">
+                </div>
+                <div class="flexCol">
+                    <p class="stockName">Bitcoin</p>
+                </div>
+                <div class="flexCol">
+                    <div class="priceContainer">
+                        <p class="stockPrice">$10,000</p>
+                        <div class="flexCol">
+                            <p class="priceChange">+1.02%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

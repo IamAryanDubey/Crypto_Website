@@ -1,3 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Red Hat Display', sans-serif;
+    padding: 20px 0;
+}
+p{
+    margin: 0.5em 0;
+}
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 #detailsHeading{
     display: flex;
     justify-content: center;
@@ -6,8 +22,13 @@
     font-size: 30px;
 }
 #cryptoDetails{
-    width: 100%;
+    width: 70%;
     text-align: center;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    padding: 40px 20px;
+    border-radius: 20px;
+
 }
 
 @keyframes rotateInfinite{
@@ -25,5 +46,23 @@
     height: 40px;
     color: aliceblue;
     border-radius: 5px;
-    background-color: blue;
+    background-color: rgb(0, 62, 112);
+    border: none;
+    cursor: pointer;
+    transition: 0.2s
+}
+#myButton:hover{
+    background-color: rgb(19, 95, 157);
+
+}
+.detailStats{
+    display: flex;
+    width: fit-content;
+    margin: 30px auto;
+    gap: 0.5em;
+}
+#changePeriod{
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    border-radius: 5px;
 }

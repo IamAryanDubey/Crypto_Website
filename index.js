@@ -1,4 +1,3 @@
-
 async function fetchCryptoData() {
     try {
         const response = await fetch("https://api.livecoinwatch.com/coins/list", {
@@ -12,59 +11,66 @@ async function fetchCryptoData() {
                 sort: "rank",
                 order: "ascending",
                 offset: 0,
-                limit: 300, // Fetch 10 cryptocurrencies
+                limit: 10, // Fetch top 10 cryptocurrencies
                 meta: true,
             }),
         });
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
         console.log("API Response:", data); // Debugging: check API response structure
-        updateTable(data);
+        updateCryptoList(data);
     } catch (error) {
         console.error("Error fetching data:", error);
     }
 }
 
-function updateTable(cryptoData) {
-    const table = document.querySelector("table");
+function updateCryptoList(cryptoData) {
+    const container = document.querySelector(".stocksTable");
 
-    // Check if the table exists in the DOM
-    if (!table) {
-        console.error("Table not found!");
+    if (!container) {
+        console.error("Container not found!");
         return;
     }
 
-    // Reset the table while keeping the headers
-    table.innerHTML = `
-        <tr class="tableContentHeading">
-            <th class="tableSymbol">Symbol</th>
-            <th class="tableName">Name</th>
-            <th class="tablePrice">Price (USD)</th>
-        </tr>
-    `;
+    container.innerHTML = ""; // Clear previous content
 
-    // Iterate over the cryptoData and append each row
     cryptoData.forEach((coin) => {
         if (!coin.rate) {
             console.warn(`Skipping coin with missing rate:`, coin);
             return;
         }
 
-        const row = document.createElement("tr");
-        row.classList.add("tableRow");
-        row.innerHTML = `
-            
-                <td class="tableName"><a href="details.html?code=${coin.code}"><img src="${coin.png64}"></img></a></td>
-                <td class="tableName"><a href="details.html?code=${coin.code}"><p>${coin.name} (${coin.code})</p></a></td>
-                <td class="tablePrice"><a href="details.html?code=${coin.code}"><p>$${coin.rate.toFixed(2)}</p></a></td>
-            
+        const cryptoRow = document.createElement("a");
+        cryptoRow.href = `details.html?code=${coin.code}`;
+        cryptoRow.classList.add("tablerow");
+        const priceChange = coin.delta.day.toFixed(2);
+        const changeClass = priceChange < 0 ? "red-bg" : "green-bg"; 
+
+
+        cryptoRow.innerHTML = `
+            <div class="flexCol">
+                <img src="${coin.png64}" alt="${coin.name}" class="">
+            </div>
+            <div class="flexCol">
+                <p class="stockName">${coin.name} (${coin.code})</p>
+            </div>
+            <div class="flexCol">
+                <div class="priceContainer">
+                    <p class="stockPrice">$${coin.rate.toFixed(2)}</p>
+                    <div class="flexCol ${changeClass}">
+                        <p class="priceChange">${priceChange > 0 ? '+' : ''}${priceChange}%</p>
+                    </div>
+                </div>
+            </div>
         `;
-        table.appendChild(row);
+
+        container.appendChild(cryptoRow);
     });
 }
 
 // Call the function when the page loads
-document.addEventListener("DOMContentLoaded", fetchCryptoData);  // Ensure the DOM is fully loaded before calling fetch
+document.addEventListener("DOMContentLoaded", fetchCryptoData);
